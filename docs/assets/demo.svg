@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="560" viewBox="0 0 920 560" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14">
+  <!-- Terminal transcript of a real run: the same three files merged by git
+       (line-level: false conflict) and by prosemend (word-level: clean).
+       Text content is copied verbatim from an actual execution. -->
+  <rect width="920" height="560" rx="10" fill="#0d1117"/>
+  <rect width="920" height="34" rx="10" fill="#161b22"/>
+  <rect y="20" width="920" height="14" fill="#161b22"/>
+  <circle cx="22" cy="17" r="6" fill="#ff5f57"/>
+  <circle cx="42" cy="17" r="6" fill="#febc2e"/>
+  <circle cx="62" cy="17" r="6" fill="#28c840"/>
+  <text x="460" y="22" fill="#8b949e" text-anchor="middle" font-size="12">prosemend — word-level three-way merge for Markdown prose</text>
+  <g fill="#c9d1d9">
+    <text x="24" y="64"><tspan fill="#8b949e"># ours edited one word, theirs edited another — same line</tspan></text>
+    <text x="24" y="88"><tspan fill="#7ee787">$</tspan> prosemend diff base.md ours.md</text>
+    <text x="24" y="112">The <tspan fill="#f85149">[-quick-]</tspan><tspan fill="#7ee787">{+swift+}</tspan> brown fox jumps over the lazy dog.</text>
+    <text x="24" y="136"><tspan fill="#7ee787">$</tspan> prosemend diff base.md theirs.md</text>
+    <text x="24" y="160">The quick brown fox <tspan fill="#f85149">[-jumps-]</tspan><tspan fill="#7ee787">{+leaps+}</tspan> over the lazy dog.</text>
+    <text x="24" y="200"><tspan fill="#7ee787">$</tspan> git merge-file -p ours.md base.md theirs.md   <tspan fill="#8b949e"># line-level</tspan></text>
+    <text x="24" y="224" fill="#f85149">&lt;&lt;&lt;&lt;&lt;&lt;&lt; ours.md</text>
+    <text x="24" y="248">The swift brown fox jumps over the lazy dog.</text>
+    <text x="24" y="272" fill="#f85149">=======</text>
+    <text x="24" y="296">The quick brown fox leaps over the lazy dog.</text>
+    <text x="24" y="320" fill="#f85149">&gt;&gt;&gt;&gt;&gt;&gt;&gt; theirs.md</text>
+    <text x="24" y="344"><tspan fill="#8b949e"># exit 1 — a false conflict for two one-word edits</tspan></text>
+    <text x="24" y="384"><tspan fill="#7ee787">$</tspan> prosemend merge ours.md base.md theirs.md     <tspan fill="#8b949e"># word-level</tspan></text>
+    <text x="24" y="408" fill="#7ee787">The swift brown fox leaps over the lazy dog.</text>
+    <text x="24" y="432"><tspan fill="#8b949e"># exit 0 — both edits kept, no conflict</tspan></text>
+    <text x="24" y="472"><tspan fill="#7ee787">$</tspan> git config merge.prosemend.driver "prosemend driver %O %A %B"</text>
+    <text x="24" y="496"><tspan fill="#7ee787">$</tspan> echo "*.md merge=prosemend" &gt;&gt; .gitattributes</text>
+    <text x="24" y="520" fill="#8b949e"># every future Markdown merge in this repo is word-level</text>
+    <text x="24" y="544" fill="#7ee787">SMOKE OK</text>
+  </g>
+</svg>
